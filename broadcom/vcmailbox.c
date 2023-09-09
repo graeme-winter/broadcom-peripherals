@@ -118,7 +118,9 @@ uint32_t* vcmailbox_get_framebuffer(uint32_t* virtual_width, uint32_t* virtual_h
     buf->pitch = VCMAILBOX_GET_PITCH_DEFAULTS;
 
     #pragma GCC diagnostic push
+    #if __GNUC__ >= 9
     #pragma GCC diagnostic ignored "-Waddress-of-packed-member"
+    #endif
     #pragma GCC diagnostic ignored "-Wcast-align"
     bool ok = vcmailbox_request((vcmailbox_buffer_t*) buf);
     #pragma GCC diagnostic pop
